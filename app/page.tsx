@@ -1,10 +1,39 @@
+import PatientForm from "@/components/forms/PatientForm";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <h1 className="text-3xl text-white underline">Home</h1>
-      <Button>Click me!</Button>
+    <div className="flex h-screen max-h-screen">
+      {/** TODO: OTP verification */}
+      <section className="remove-scrollbar container my-auto">
+        <div className="sub-container max-w-[296px]">
+          <Image
+            src="/assets/icons/logo-full.png"
+            height={1000}
+            width={1000}
+            alt="patient"
+            className="mb-12 h-fit w-fit"
+          />
+        </div>
+        <PatientForm/>
+
+        <div className="text-14-regular mt-20 flex justify-between">
+         <p className="justify-items-end text-dark-600 xl:text-left">
+          © 2025 Elevance Health Inc.
+         </p>
+         <Link href="/?admin=true" className="text-green-500">
+          Admin
+         </Link>
+        </div>
+      </section>
+      <Image
+        src="/assets/images/onboarding-img.png"
+        height={1000} width={1000}
+        alt="patient"
+        className="side-img max-w-[50%] rounded-lg"
+      />
     </div>
   );
 }

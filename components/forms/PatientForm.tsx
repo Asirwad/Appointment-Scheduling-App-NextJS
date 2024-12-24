@@ -24,10 +24,13 @@ const formSchema = z.object({
     }),
   })
 
-import React from 'react'
+import React, { useState } from 'react'
 import CustomFormField from "../CustomFormField"
+import SubmitButton from "../SubmitButton"
 
 const PatientForm = () => {
+    const [isLoading, setIsLoading] = useState(false);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -75,7 +78,7 @@ const PatientForm = () => {
                 
 
             />
-            <Button type="submit">Submit</Button>
+            <SubmitButton isLoading={isLoading} className="bg-purple-700 w-full rounded-lg">Get Started</SubmitButton>
         </form>
     </Form>
     )

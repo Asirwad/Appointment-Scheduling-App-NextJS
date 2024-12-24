@@ -1,5 +1,5 @@
 import PatientForm from "@/components/forms/PatientForm";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,7 +14,7 @@ export default function Home() {
             height={1000}
             width={1000}
             alt="patient"
-            className="mb-12 h-fit w-fit"
+            className="h-24 w-fit"
           />
         </div>
         <PatientForm/>

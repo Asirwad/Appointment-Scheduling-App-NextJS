@@ -21,6 +21,7 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { Select, SelectContent, SelectTrigger, SelectValue } from './ui/select'
+import { Textarea } from './ui/textarea'
 
 /* eslint-disable */
 interface CustomProps{
@@ -70,6 +71,17 @@ const RenderField = ({field, props }: {field: any; props: CustomProps }) => {
                         />
                     </FormControl>
                 </div>
+            )
+        case FormFieldTypes.TEXTAREA:
+            return (
+                <FormControl>
+                    <Textarea
+                        placeholder={placeholder}
+                        {...field}
+                        className='shad-textArea'
+                        disabled={props.disabled}
+                    />
+                </FormControl>
             )
         case FormFieldTypes.PHONE_INPUT:
             return (

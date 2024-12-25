@@ -201,7 +201,41 @@ const RegisterForm = ({ user }: { user: User}) => {
                     label="Insurance Policy Number"
                     placeholder="ABC123456789"
                 />
-            </div>           
+            </div>  
+
+            <div className="flex flex-col gap-6 xl:flex-row">
+                <CustomFormField
+                    fieldType={FormFieldTypes.TEXTAREA}
+                    control={form.control}
+                    name="allergies"
+                    label="Allergies (if any)"
+                    placeholder="eg: Peanuts, Penicillin, Pollen"
+                />
+                <CustomFormField
+                    fieldType={FormFieldTypes.TEXTAREA}
+                    control={form.control}
+                    name="currentMedication"
+                    label="Current medication (if any)"
+                    placeholder="Paracetamol 500mg"
+                />
+            </div>
+
+            <div className="flex flex-col gap-6 xl:flex-row">
+                <CustomFormField
+                    fieldType={FormFieldTypes.TEXTAREA}
+                    control={form.control}
+                    name="familyMedicalHistory"
+                    label="Family medical history (if any)"
+                    placeholder="Mother had heart disease"
+                />
+                <CustomFormField
+                    fieldType={FormFieldTypes.TEXTAREA}
+                    control={form.control}
+                    name="pastMedicalHistory"
+                    label="Past medical history (if any)"
+                    placeholder="Had UTI"
+                />
+            </div>          
 
             <SubmitButton isLoading={isLoading} className="bg-purple-700 w-full rounded-lg">Get Started</SubmitButton>
         </form>

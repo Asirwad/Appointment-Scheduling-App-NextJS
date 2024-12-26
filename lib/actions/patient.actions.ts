@@ -9,7 +9,7 @@ export const createUser = async (user: CreateUserParams) => {
     try {
         console.log("tyying to create new user2")
         const newUser = await users.create(
-            ID.unique(),
+            appWrite_ID.unique(),
             user.email,
             user.phone,
             undefined,
@@ -18,6 +18,7 @@ export const createUser = async (user: CreateUserParams) => {
         console.log({newUser})
         return parseStringify(newUser);
     } catch (error) {
+        // @ts-expect-error("")
         if(error && error?.code === 409){
             const documents = await users.list([
                 Query.equal('email', [user.email])

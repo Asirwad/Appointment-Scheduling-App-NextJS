@@ -54,7 +54,7 @@ const RegisterForm = ({ user }: { user: User}) => {
                 ...values,
                 userId: user.$id,
                 birthDate: new Date(values.birthDate),
-                IdentificationDocument: formData
+                identificationDocument: formData
             }
             // @ts-expect-error("")
             const patient = await registerPatient(patientData);

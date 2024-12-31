@@ -1,5 +1,7 @@
+import { Button } from '@/components/ui/button';
 import { Doctors } from '@/constants';
 import { getAppointment } from '@/lib/actions/appointment.actions';
+import { formatDateTime } from '@/lib/utils';
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -55,8 +57,17 @@ const SuccessPage = async ({params: { userId }, searchParams }: SearchParamProps
                         height={24}
                         width={24}
                         alt='calendar'/>
+                    <p>{formatDateTime(appointment.schedule).dateTime}</p>
                 </div>
             </section>
+            <Button variant='outline' className='shad-primary-btn' asChild>
+                <Link href={`/patients/${userId}/new-appointment`}>
+                    New Appointment
+                </Link>
+            </Button>
+            <p className='copyright'>
+                © 2025 Elevance Health Inc.
+            </p>
         </div>
     </div>
   )

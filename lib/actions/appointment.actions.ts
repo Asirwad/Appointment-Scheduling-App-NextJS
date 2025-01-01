@@ -1,10 +1,11 @@
 'use server'
 
 import { ID as appwrite_ID, Query} from "node-appwrite";
-import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases } from "../appwrite.config";
+import { APPOINTMENT_COLLECTION_ID, DATABASE_ID, databases, messaging } from "../appwrite.config";
 import { parseStringify } from "../utils";
 import { Appointment } from "@/types/appwrite.types";
 import { revalidatePath } from "next/cache";
+import { formatDateTime } from '@/lib/utils';
 
 
 export const createAppointment = async (appointmentData: CreateAppointmentParams) => {
@@ -85,9 +86,30 @@ export const updateAppointment = async ({
             throw new Error('Appointment not found');
         }
 
-        // Send SMS notification
+        const smsMessage = `
+            Hai its ElevanceHealth. 
+            ${type === 'schedule' ? 
+                `Your appointment has been scheduled for ${formatDateTime(appointment.schedule!)}` 
+                : `We regret to inform you that your appointment has been cancelled for the following reason: ${appointment.cancellationReason}`}
+        `
+
+        await sendSMSNotification(userId, smsMessage);
         revalidatePath('/admin')
         return parseStringify(updatedAppointment);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export const sendSMSNotification = async (userId:string, content:string) => {
+    try {
+        const message = await messaging.createSms(
+            appwrite_ID.unique(),
+            content,
+            [userId]
+        )
+
+        return parseStringify(message);
     } catch (error) {
         console.log(error);
     }

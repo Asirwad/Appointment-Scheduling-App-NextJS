@@ -3,6 +3,10 @@ import { getRecentAppointmentList } from '@/lib/actions/appointment.actions'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import {columns, Payment} from '@/components/table/columns'
+import { DataTable } from '@/components/table/DataTable'
+
+
 
 const AdminPage = async () => {
     const appointments = await getRecentAppointmentList()
@@ -30,23 +34,29 @@ const AdminPage = async () => {
             <section className='admin-stat'>
                 <StatCard
                     type='appointments'
-                    count={appointments.scheduledCount}
+                    // count={appointments.scheduledCount}
+                    count={3}
                     label='Scheduled Appointments'
                     iconSrc='/assets/icons/appointments.svg'
                 />
                 <StatCard
                     type='pending'
-                    count={appointments.pendingCount}
+                    // count={appointments.pendingCount}
+                    count={2}
                     label='Pending Appointments'
                     iconSrc='/assets/icons/pending.svg'
                 />
                 <StatCard
                     type='cancelled'
-                    count={appointments.cancelledCount}
+                    // count={appointments.cancelledCount}
+                    count={1}
                     label='Cancelled Appointments'
                     iconSrc='/assets/icons/cancelled.svg'
                 />
             </section>
+
+            <DataTable columns={columns} data={appointments.documents}/>
+            {/* <DataTable columns={columns} data={data}/> */}
         </main>
     </div>
   )

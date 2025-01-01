@@ -35,11 +35,10 @@ const AppointmentForm = ({ userId, patientId, type, appointment, setOpen }: {
         resolver: zodResolver(AppointmentFormValidation),
         defaultValues: {
           primaryPhysician: appointment ? appointment.primaryPhysician : '',
-          schedule: appointment ? new Date(appointment.schedule) : new Date(),
-          reason: appointment ? appointment.reason : '',
-          note: appointment ? appointment.note: '',
-          // @ts-expect-error('Something bout to happen, idk🤷‍♂️')
-          cancellationReason: appointment ? appointment.cancellationReason : '',
+          schedule: appointment ? new Date(appointment?.schedule) : new Date(Date.now()),
+          reason: appointment?.reason || '',
+          note: appointment?.note || '',
+          cancellationReason: appointment?.cancellationReason || '',
         },
     })  
 

@@ -89,7 +89,7 @@ export const updateAppointment = async ({
         const smsMessage = `
             Hai its ElevanceHealth. 
             ${type === 'schedule' ? 
-                `Your appointment has been scheduled for ${formatDateTime(appointment.schedule!)}` 
+                `Your appointment has been scheduled for ${formatDateTime(appointment.schedule!).dateTime} with Dr. ${appointment.primaryPhysician}` 
                 : `We regret to inform you that your appointment has been cancelled for the following reason: ${appointment.cancellationReason}`}
         `
 

@@ -12,22 +12,30 @@ import { Appointment } from "@/types/appwrite.types"
 
 export const columns: ColumnDef<Appointment>[] = [
     {
-        header: "ID",
-        cell: ({ row }) => <p className="text-14-medium">{row.index+1}</p>
+        header: "#",
+        cell: ({ row }) => {
+          return <p className="text-14-medium">{row.index+1}</p>
+        },
     },
     {
-        accessorKey: 'patient',
-        header: "Patient",
-        cell: ({ row }) => <p className="text-14-medium">{row.original.patient.name}</p>
+      accessorKey: 'patient',
+      header: "Patient",
+      cell: ({ row }) => {
+        const appointment = row.original;
+        return <p className="text-14-medium ">{appointment.patient.name}</p>;
+      },
     },
   {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
-        <div className="min-w-[114px]">
-            <StatusBadge status={row.original.status}/>
-        </div>
-    }
+        const appointment = row.original;
+        return (
+          <div className="min-w-[115px]">
+            <StatusBadge status={appointment.status}/>
+          </div>
+        );
+    },
   },
   {
     accessorKey: "schedule",
@@ -40,7 +48,7 @@ export const columns: ColumnDef<Appointment>[] = [
   },
   {
     accessorKey: "primaryPhysician",
-    header: () => <div className="text-right">Amount</div>,
+    header: "Doctor",
     cell: ({ row }) => {
       const doctor = Doctors.find((doc) => doc.name === row.original.primaryPhysician)
       return (
